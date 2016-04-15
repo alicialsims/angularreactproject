@@ -2,22 +2,59 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>  </title>
+	<title>Find-A-Spot | Angular/React Project</title>
 	<link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
-
+<body ng-app>
+<div id="supercontainer">
 		<!-- ************* HEADER ************** -->
-
+<h1 class="title"> Find-A-Spot </h1>
 		<!-- ************* NAVIGATION ********** -->
+<div id="nav">
+	<nav class="{{active}}" ng-click="$event.preventDefault()">
+		<ul>
+			<li><a href="#" class="jquery" ng-click="active='jquery'">JQuery</a></li>
 
+			<li><a href="#" class="angular" ng-click="active='angular'">Angular</a></li>
+
+			<li><a href="#" class="react" ng-click="active='react'">React</a></li>
+		</ul>
+	</nav>
+</div>
+	<div ng-hide="active"> Please choose an example </div>
+	<div ng-show="active"> You chose <b>{{active}}</b></p>
+	</div>
 		<!-- ************* CONTENT ************* -->
+<div class="container">
 
+</div>
 		<!-- ************* FOOTER ************** -->
+<nav>
+	<ul>
+		<li><a class="sourcecode" href="sourcecode.html">Source</a></li>
+		<li><a class="about" href="about.html">About</a></li>
+		<li><a class="contact" href="contact.html">Contact</a></li>
+	</ul>
+</nav>
+
+</div><!-- end supercontainer -->
 
 		<!-- ************* SCRIPTS ************* -->
-
-
+<script src="js/angular.min.js"></script>
+<script src="js/jquery-1.12.3.min.js"></script>
+<script>
+$.getJSON( "js/hotels.json", function( data ) {
+  var items = [];
+  $.each( data, function( hotel, price ) {
+    items.push( '<li id="hotels">' + hotel +'&nbsp; $' + price + '</li>' );
+  });
+ 
+  $( '<ul/>', {
+    'class': 'my-new-list',
+    html: items.join( "" )
+  }).appendTo( ".container" );
+});
+</script>
 </body>
 </html>
